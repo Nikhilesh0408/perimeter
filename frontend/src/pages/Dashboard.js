@@ -59,7 +59,15 @@ function Dashboard() {
       <main className="max-w-6xl mx-auto px-6 py-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-semibold text-slate-900">Vendors</h2>
-          <span className="text-sm text-slate-500">{vendors.length} total</span>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-slate-500">{vendors.length} total</span>
+            <button
+              onClick={() => navigate('/add-vendor')}
+              className="bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium px-4 py-2 rounded transition"
+            >
+              + Add vendor
+            </button>
+          </div>
         </div>
 
         {loading && <p className="text-slate-500 text-sm">Loading vendors...</p>}
