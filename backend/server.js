@@ -10,6 +10,7 @@ app.use(express.json());
 
 const supabase = require('./config/supabaseClient');
 const vendorRoutes = require('./routes/vendorRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Test route - to confirm server is running
 app.get('/', (req, res) => {
@@ -22,8 +23,9 @@ app.get('/test-db', async (req, res) => {
   res.json({ vendors: data });
 });
 
-// Vendor routes
+// Routes
 app.use('/api/vendors', vendorRoutes);
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
