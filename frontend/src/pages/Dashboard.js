@@ -20,9 +20,12 @@ function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchVendors = async () => {
+ const fetchVendors = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/vendors');
+      const token = localStorage.getItem('token');
+      const response = await axios.get('http://localhost:5000/api/vendors', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setVendors(response.data.vendors);
     } catch (err) {
       setError('Failed to load vendors.');

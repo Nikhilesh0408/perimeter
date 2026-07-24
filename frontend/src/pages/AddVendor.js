@@ -17,11 +17,14 @@ function AddVendor() {
     setLoading(true);
 
     try {
+     const token = localStorage.getItem('token');
       await axios.post('http://localhost:5000/api/vendors', {
         name,
         industry,
         years_in_business: yearsInBusiness ? Number(yearsInBusiness) : null,
         employee_count: employeeCount ? Number(employeeCount) : null,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       navigate('/dashboard');
